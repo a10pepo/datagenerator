@@ -3,6 +3,7 @@ from faker import Faker
 import keyboard
 import time
 import random
+from datetime import datetime
 
 faker = Faker('es_ES')
 USERS_TOTAL=100
@@ -23,7 +24,21 @@ def initiate_data():
         user["friends"]=[]
         user["position"]={"lat":random.uniform(39.4, 39.5),"lon":random.uniform(-0.3, -0.4)}
         user["transport"]=random.choice(vehicles)
+        user["age"]=random.uniform(16, 85)
+        user["gender"]=random.choice(["man","woman"])
+        user["weight"]=random.uniform(60, 110)
+        user["height"]=random.uniform(150, 210)
+        user["bodyfat"]=random.uniform(3, 45)
+        user["bloodpressure_sist"]=random.uniform(120, 180)
+        user["bloodpressure_diast"]=random.uniform(70, 120)
+        user["cholesterol"]=random.uniform(150, 300)
+        user["smoker"]=random.choice(["0","1"])
+        user["drinking"]=random.uniform(0,7)
+        user["disability"]=random.choice(["0","1"])
+        user["previouspatology"]=random.choice(["0","1"])
+        user["time"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
         users[user["id"]]=user   
+        print(user)
     num=0
     for element in users.items():
         print(f"Generating friends of {num} of {len(users)}")
@@ -43,6 +58,7 @@ def generate_step():
     if len(users)>0:
         print("STEP")
         for element in users.items():
+            users[element[0]]["time"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
             lat=users[element[0]]["position"]["lat"]
             lon=users[element[0]]["position"]["lon"]
             users[element[0]]["position"]["lon"]=lon+random.uniform(0.001, 0.005)
@@ -52,6 +68,7 @@ def generate_step():
                 users[element[0]]["transport"]=random.choice(vehicles)
             if lon>lon_max or lon<lon_min:
                 users[element[0]]["position"]["lon"]=random.uniform(-0.3, -0.4)
+            
     else:
         initiate_data()
     return users
