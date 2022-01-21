@@ -36,6 +36,7 @@ def initiate_data():
         user["drinking"]=random.uniform(0,7)
         user["disability"]=random.choice(["0","1"])
         user["previouspatology"]=random.choice(["0","1"])
+        user["cp"]=random.randint(46001, 46025)
         user["time"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
         users[user["id"]]=user   
         print(user)
