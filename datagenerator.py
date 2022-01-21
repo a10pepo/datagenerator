@@ -32,13 +32,14 @@ def initiate_data():
         user["weight"]=random.uniform(60, 110)
         user["height"]=random.uniform(150, 210)
         user["bodyfat"]=random.uniform(3, 45)
-        user["bloodpressure_sist"]=random.uniform(120, 180)
+        user["bloodpressure_sist"]=random.uniform(90, 180)
         user["bloodpressure_diast"]=random.uniform(70, 120)
         user["cholesterol"]=random.uniform(150, 300)
         user["smoker"]=random.choice(["0","1"])
         user["drinking"]=random.uniform(0,7)
         user["disability"]=random.choice(["0","1"])
         user["previouspatology"]=random.choice(["0","1"])
+        user["cp"]=random.randint(46001, 46025)
         user["time"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
         users[user["id"]]=user   
     num=0
